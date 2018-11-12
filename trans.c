@@ -1,6 +1,5 @@
 #include "myas.h"
-#include<string.h>
-
+#include "check.c"
 int instr_trans(char *op, char *args, char* mcode)
 {
 	// check syntax
@@ -11,8 +10,6 @@ int instr_trans(char *op, char *args, char* mcode)
 		printf("Error: %s %s is not valid\n", op, args);
 		return 0;
 	}
-
-
 	strcpy(mcode, "AB CD EF");
         for( i=0;i<strlen(args);i++)
  	{

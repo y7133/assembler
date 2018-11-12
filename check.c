@@ -1,5 +1,5 @@
 #include "myas.h"
-#include<string.h>
+
 int is_valid(char *op, char *args)
 {
 	//printf("if valid, return 1\n");
