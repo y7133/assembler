@@ -1,5 +1,4 @@
 #include "myas.h"
-#include "trans.c"
 int main(int argc, char* argv[])
 {
 	char ifname[20];

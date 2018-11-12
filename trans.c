@@ -1,15 +1,14 @@
 #include "myas.h"
-#include "check.c"
 int instr_trans(char *op, char *args, char* mcode)
 {
 	// check syntax
-        char x[30],y[30],z[30];
-	char *s;
+        char x[30]={"\0"},y[30]={"\0"},z[30]={"\0"};
+	char *s=(char*)malloc(sizeof(char)*30);
 	int i,n,j;
-	if(!is_valid(op, args)){
+	/*if(!is_valid(op, args)){
 		printf("Error: %s %s is not valid\n", op, args);
 		return 0;
-	}
+	}*/
 	strcpy(mcode, "AB CD EF");
         for( i=0;i<strlen(args);i++)
  	{
@@ -18,13 +17,20 @@ int instr_trans(char *op, char *args, char* mcode)
   	    x[i]=args[i];
  	}
 	++i;
-        for(j=i;j<strlen(args)-i;j++)
+	printf("%c  ",args[i]);
+        for(j=i;j<strlen(args);j++)
 	{
 		y[j-i]=args[j];
 	}
-	char *r=strstr(x,"0x");
-	if(r!=NULL)
-		s=strstr(r,"(%");	
+	printf("%c  ",y[j]);
+	printf("x:%s i:%d  y:%s\n",x,i,y);
+	if(!is_valid(op,args)){
+		printf("Error:%s %s is not valid\n",op,args);
+		return 0;
+	}
+	//char *r=strstr(x,"0x");
+	//if(r!=NULL)
+	//	s=strstr(r,"(%");	
         if(x[0]=='%'&&y[0]=='%')
          {
 		strcpy(mcode, "1000 10001");
@@ -33,7 +39,7 @@ int instr_trans(char *op, char *args, char* mcode)
 	{
 	 	strcpy(mcode, "1000 1011");
 	}
-	else if(s!=NULL&&y[0]=='%')
+	else if(x[0]=='0'&&x[1]=='x'&&y[0]=='%')
 	{
 		strcpy(mcode, "1000 1011");
 	}
