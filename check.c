@@ -27,6 +27,8 @@ int is_valid(char *op, char *args)
 		n++;
 	else if(x[0]=='$'&&y[0]=='$')
 		n++;
+	else if(y[0]=='$')
+		n++;
 	/********************************/
     /*  							*/
 	/*         syntax check         */
