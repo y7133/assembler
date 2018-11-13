@@ -27,10 +27,7 @@ int instr_trans(char *op, char *args, char* mcode)
 	if(!is_valid(op,args)){
 		printf("Error:%s %s is not valid\n",op,args);
 		return 0;
-	}
-	char *r=strstr(x,"0x");
-	if(r!=NULL)
-		s=strstr(r,"(%");	
+	}	
         if(x[0]=='%'&&y[0]=='%')
          {
 		strcpy(mcode, "89");
@@ -39,11 +36,11 @@ int instr_trans(char *op, char *args, char* mcode)
 	{
 	 	strcpy(mcode, "8b");
 	}
-	else if(r!=NULL&&x[0]=='0'&&y[0]=='%')
+	else if(x[strlen(x)-1]==')'&&x[0]=='0'&&y[0]=='%')
 	{
 		strcpy(mcode, "8b");
 	}
-	else if(s!=NULL&&y[0]=='%')
+	else if(x[strlen(x)-1]==')'&&x[0]=='-'&&y[0]=='%')
 	{
 		strcpy(mcode,"8b");
 	}
